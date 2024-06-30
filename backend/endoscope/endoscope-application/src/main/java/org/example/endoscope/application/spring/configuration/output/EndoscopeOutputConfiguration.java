@@ -25,8 +25,9 @@ public class EndoscopeOutputConfiguration {
     @Bean
     public DirectoryRepositoryPort directoryRepositoryPort(
             DirectoryJpaRepository directoryJpaRepository,
-            DbDirectoryConverter dbDirectoryConverter) {
-        return new DirectoryRepository(directoryJpaRepository, dbDirectoryConverter);
+            DbDirectoryConverter dbDirectoryConverter,
+            ImageRepositoryPort imageRepositoryPort) {
+        return new DirectoryRepository(directoryJpaRepository, dbDirectoryConverter, imageRepositoryPort);
     }
 
     @Bean

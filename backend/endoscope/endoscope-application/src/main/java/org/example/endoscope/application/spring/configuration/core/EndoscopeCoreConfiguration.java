@@ -4,8 +4,10 @@ import org.example.endoscope.core.driven.DirectoryRepositoryPort;
 import org.example.endoscope.core.driven.ImageRepositoryPort;
 import org.example.endoscope.core.driven.UserRepositoryPort;
 import org.example.endoscope.core.driver.AuthServicePort;
+import org.example.endoscope.core.driver.BackupServicePort;
 import org.example.endoscope.core.driver.DirectoryServicePort;
 import org.example.endoscope.core.driver.ImageServicePort;
+import org.example.endoscope.core.service.BackupService;
 import org.example.endoscope.core.service.SpringAuthService;
 import org.example.endoscope.core.service.SpringDirectoryService;
 import org.example.endoscope.core.service.SpringImageService;
@@ -35,4 +37,10 @@ public class EndoscopeCoreConfiguration {
         return new SpringAuthService(userRepositoryPort, passwordEncoder, authenticationManager);
     }
 
+    @Bean
+    public BackupServicePort backupServicePort(DirectoryRepositoryPort directoryRepositoryPort,
+                                               ImageRepositoryPort imageRepositoryPort,
+                                               UserRepositoryPort userRepositoryPort) {
+        return new BackupService(directoryRepositoryPort, imageRepositoryPort, userRepositoryPort);
+    }
 }

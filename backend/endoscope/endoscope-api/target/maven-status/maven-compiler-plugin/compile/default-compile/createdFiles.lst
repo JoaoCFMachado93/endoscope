@@ -10,6 +10,7 @@ org/openapitools/RFC3339DateFormat.class
 org/example/endoscope/api/mapper/directory/ImageConverterImpl.class
 org/openapitools/configuration/SpringDocConfiguration.class
 org/example/endoscope/api/openapi/AuthApi$1.class
+org/example/endoscope/api/openapi/model/DirectoryEntityUpdate.class
 org/example/endoscope/api/mapper/directory/DirectoryConverterImpl.class
 org/example/endoscope/api/openapi/model/ImageEntity.class
 org/example/endoscope/api/openapi/ImageApiDelegate.class

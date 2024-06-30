@@ -31,8 +31,8 @@ public class SpringImageService implements ImageServicePort {
             throw new IllegalArgumentException("Directory does not exist");
         }
 
-
         imageRepositoryPort.createImageInDirectory(directoryId, image);
+        directoryRepositoryPort.incrementImageCount(directoryId);
     }
 
     @Override
@@ -52,7 +52,10 @@ public class SpringImageService implements ImageServicePort {
     @Override
     @Transactional
     public void deleteImage(long imageId) {
+        Image imageById = imageRepositoryPort.getImageById(imageId);
+        long directory = imageById.getDirectory();
         imageRepositoryPort.deleteImage(imageId);
+        directoryRepositoryPort.decrementImageCount(directory);
     }
 
     @Override

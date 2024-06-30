@@ -15,4 +15,13 @@ public interface DirectoryServicePort {
     void createSubDirectory(List<Directory> subDirectories);
 
     void addOrEditDirectoryDescription(Long directoryId, String description);
+
+    Directory getDirectoryById(long directoryId);
+
+    void editDirectory(long directoryId,
+                       String directoryName,
+                       Integer directoryPosition);
+
+    void deleteDirectory(long directoryId);
+
 }

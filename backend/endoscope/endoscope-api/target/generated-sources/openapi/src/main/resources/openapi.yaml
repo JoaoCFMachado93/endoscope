@@ -86,6 +86,44 @@ paths:
       x-accepts: application/json
       x-tags:
       - tag: auth
+  /auth/generateBackUp:
+    post:
+      description: Generate backup of the database
+      operationId: generateBackUp
+      responses:
+        "200":
+          description: Backup generated successfully
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+          description: Internal Server Error
+      summary: Generate backup of the database
+      tags:
+      - auth
+      x-accepts: application/json
+      x-tags:
+      - tag: auth
+  /auth/uploadBackup:
+    post:
+      description: Upload backup of the database
+      operationId: uploadBackUp
+      responses:
+        "200":
+          description: Backup upload successfully
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+          description: Internal Server Error
+      summary: Upload backup of the database
+      tags:
+      - auth
+      x-accepts: application/json
+      x-tags:
+      - tag: auth
   /directories:
     get:
       description: Get directories
@@ -159,6 +197,97 @@ paths:
                 $ref: '#/components/schemas/InternalServerError'
           description: Internal Server Error
       summary: Create directory
+      tags:
+      - directory
+      x-content-type: application/json
+      x-accepts: application/json
+      x-tags:
+      - tag: directory
+  /directories/{directoryId}:
+    delete:
+      description: Delete directory
+      operationId: deleteDirectory
+      parameters:
+      - explode: false
+        in: path
+        name: directoryId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          description: Successful operation
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+          description: Internal Server Error
+      summary: Delete directory
+      tags:
+      - directory
+      x-accepts: application/json
+      x-tags:
+      - tag: directory
+    get:
+      description: Get directory by ID
+      operationId: getDirectoryById
+      parameters:
+      - explode: false
+        in: path
+        name: directoryId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DirectoryEntity'
+          description: OK
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+          description: Internal Server Error
+      summary: Get directory by ID
+      tags:
+      - directory
+      x-accepts: application/json
+      x-tags:
+      - tag: directory
+    post:
+      description: Edit directory
+      operationId: editDirectory
+      parameters:
+      - explode: false
+        in: path
+        name: directoryId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DirectoryEntityUpdate'
+        description: Directory to edit
+        required: true
+      responses:
+        "200":
+          description: OK
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+          description: Internal Server Error
+      summary: Edit directory
       tags:
       - directory
       x-content-type: application/json
@@ -511,6 +640,8 @@ components:
       type: object
     DirectoryEntity:
       example:
+        imageCount: 1
+        directoryPosition: 5
         parentDirectory: 6
         directoryId: 0
         directoryDescription: directoryDescription
@@ -527,6 +658,24 @@ components:
           type: string
         parentDirectory:
           description: The parent directory id
+          type: integer
+        imageCount:
+          description: The number of images in the directory
+          type: integer
+        directoryPosition:
+          description: The position of the directory
+          type: integer
+      type: object
+    DirectoryEntityUpdate:
+      example:
+        directoryPosition: 0
+        directoryName: directoryName
+      properties:
+        directoryName:
+          description: The directory name
+          type: string
+        directoryPosition:
+          description: The position of the directory
           type: integer
       type: object
     DirectoryDescriptionUpsert:

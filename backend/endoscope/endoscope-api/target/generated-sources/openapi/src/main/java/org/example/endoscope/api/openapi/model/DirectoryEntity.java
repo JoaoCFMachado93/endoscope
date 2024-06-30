@@ -18,7 +18,7 @@ import javax.annotation.Generated;
  * DirectoryEntity
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-06-29T23:44:02.482532+01:00[Europe/Lisbon]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-08-02T16:56:12.632668+01:00[Europe/Lisbon]")
 public class DirectoryEntity {
 
   private Integer directoryId;
@@ -28,6 +28,10 @@ public class DirectoryEntity {
   private String directoryDescription;
 
   private Integer parentDirectory;
+
+  private Integer imageCount;
+
+  private Integer directoryPosition;
 
   public DirectoryEntity directoryId(Integer directoryId) {
     this.directoryId = directoryId;
@@ -109,6 +113,46 @@ public class DirectoryEntity {
     this.parentDirectory = parentDirectory;
   }
 
+  public DirectoryEntity imageCount(Integer imageCount) {
+    this.imageCount = imageCount;
+    return this;
+  }
+
+  /**
+   * The number of images in the directory
+   * @return imageCount
+  */
+  
+  @Schema(name = "imageCount", description = "The number of images in the directory", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("imageCount")
+  public Integer getImageCount() {
+    return imageCount;
+  }
+
+  public void setImageCount(Integer imageCount) {
+    this.imageCount = imageCount;
+  }
+
+  public DirectoryEntity directoryPosition(Integer directoryPosition) {
+    this.directoryPosition = directoryPosition;
+    return this;
+  }
+
+  /**
+   * The position of the directory
+   * @return directoryPosition
+  */
+  
+  @Schema(name = "directoryPosition", description = "The position of the directory", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("directoryPosition")
+  public Integer getDirectoryPosition() {
+    return directoryPosition;
+  }
+
+  public void setDirectoryPosition(Integer directoryPosition) {
+    this.directoryPosition = directoryPosition;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -121,12 +165,14 @@ public class DirectoryEntity {
     return Objects.equals(this.directoryId, directoryEntity.directoryId) &&
         Objects.equals(this.directoryName, directoryEntity.directoryName) &&
         Objects.equals(this.directoryDescription, directoryEntity.directoryDescription) &&
-        Objects.equals(this.parentDirectory, directoryEntity.parentDirectory);
+        Objects.equals(this.parentDirectory, directoryEntity.parentDirectory) &&
+        Objects.equals(this.imageCount, directoryEntity.imageCount) &&
+        Objects.equals(this.directoryPosition, directoryEntity.directoryPosition);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(directoryId, directoryName, directoryDescription, parentDirectory);
+    return Objects.hash(directoryId, directoryName, directoryDescription, parentDirectory, imageCount, directoryPosition);
   }
 
   @Override
@@ -137,6 +183,8 @@ public class DirectoryEntity {
     sb.append("    directoryName: ").append(toIndentedString(directoryName)).append("\n");
     sb.append("    directoryDescription: ").append(toIndentedString(directoryDescription)).append("\n");
     sb.append("    parentDirectory: ").append(toIndentedString(parentDirectory)).append("\n");
+    sb.append("    imageCount: ").append(toIndentedString(imageCount)).append("\n");
+    sb.append("    directoryPosition: ").append(toIndentedString(directoryPosition)).append("\n");
     sb.append("}");
     return sb.toString();
   }

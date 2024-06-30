@@ -2,6 +2,7 @@ package org.example.endoscope.api.openapi;
 
 import org.example.endoscope.api.openapi.model.DirectoryDescriptionUpsert;
 import org.example.endoscope.api.openapi.model.DirectoryEntity;
+import org.example.endoscope.api.openapi.model.DirectoryEntityUpdate;
 import org.example.endoscope.api.openapi.model.InternalServerError;
 import java.util.List;
 import org.springframework.http.HttpStatus;
@@ -19,7 +20,7 @@ import javax.annotation.Generated;
  * A delegate to be called by the {@link DirectoryApiController}}.
  * Implement this interface with a {@link org.springframework.stereotype.Service} annotated class.
  */
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-06-29T23:44:02.482532+01:00[Europe/Lisbon]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-08-02T16:56:12.632668+01:00[Europe/Lisbon]")
 public interface DirectoryApiDelegate {
 
     default Optional<NativeWebRequest> getRequest() {
@@ -71,6 +72,36 @@ public interface DirectoryApiDelegate {
     }
 
     /**
+     * DELETE /directories/{directoryId} : Delete directory
+     * Delete directory
+     *
+     * @param directoryId  (required)
+     * @return Successful operation (status code 200)
+     *         or Internal Server Error (status code 500)
+     * @see DirectoryApi#deleteDirectory
+     */
+    default ResponseEntity<Void> deleteDirectory(Integer directoryId) {
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+    /**
+     * POST /directories/{directoryId} : Edit directory
+     * Edit directory
+     *
+     * @param directoryId  (required)
+     * @param directoryEntityUpdate Directory to edit (required)
+     * @return OK (status code 200)
+     *         or Internal Server Error (status code 500)
+     * @see DirectoryApi#editDirectory
+     */
+    default ResponseEntity<Void> editDirectory(Integer directoryId,
+        DirectoryEntityUpdate directoryEntityUpdate) {
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+    /**
      * GET /directories : Get directories
      * Get directories
      *
@@ -82,7 +113,30 @@ public interface DirectoryApiDelegate {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "[ { \"parentDirectory\" : 6, \"directoryId\" : 0, \"directoryDescription\" : \"directoryDescription\", \"directoryName\" : \"directoryName\" }, { \"parentDirectory\" : 6, \"directoryId\" : 0, \"directoryDescription\" : \"directoryDescription\", \"directoryName\" : \"directoryName\" } ]";
+                    String exampleString = "[ { \"imageCount\" : 1, \"directoryPosition\" : 5, \"parentDirectory\" : 6, \"directoryId\" : 0, \"directoryDescription\" : \"directoryDescription\", \"directoryName\" : \"directoryName\" }, { \"imageCount\" : 1, \"directoryPosition\" : 5, \"parentDirectory\" : 6, \"directoryId\" : 0, \"directoryDescription\" : \"directoryDescription\", \"directoryName\" : \"directoryName\" } ]";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+    /**
+     * GET /directories/{directoryId} : Get directory by ID
+     * Get directory by ID
+     *
+     * @param directoryId  (required)
+     * @return OK (status code 200)
+     *         or Internal Server Error (status code 500)
+     * @see DirectoryApi#getDirectoryById
+     */
+    default ResponseEntity<DirectoryEntity> getDirectoryById(Integer directoryId) {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"imageCount\" : 1, \"directoryPosition\" : 5, \"parentDirectory\" : 6, \"directoryId\" : 0, \"directoryDescription\" : \"directoryDescription\", \"directoryName\" : \"directoryName\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -105,7 +159,7 @@ public interface DirectoryApiDelegate {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "[ { \"parentDirectory\" : 6, \"directoryId\" : 0, \"directoryDescription\" : \"directoryDescription\", \"directoryName\" : \"directoryName\" }, { \"parentDirectory\" : 6, \"directoryId\" : 0, \"directoryDescription\" : \"directoryDescription\", \"directoryName\" : \"directoryName\" } ]";
+                    String exampleString = "[ { \"imageCount\" : 1, \"directoryPosition\" : 5, \"parentDirectory\" : 6, \"directoryId\" : 0, \"directoryDescription\" : \"directoryDescription\", \"directoryName\" : \"directoryName\" }, { \"imageCount\" : 1, \"directoryPosition\" : 5, \"parentDirectory\" : 6, \"directoryId\" : 0, \"directoryDescription\" : \"directoryDescription\", \"directoryName\" : \"directoryName\" } ]";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

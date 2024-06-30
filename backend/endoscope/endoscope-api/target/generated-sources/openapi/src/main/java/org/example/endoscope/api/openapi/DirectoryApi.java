@@ -7,6 +7,7 @@ package org.example.endoscope.api.openapi;
 
 import org.example.endoscope.api.openapi.model.DirectoryDescriptionUpsert;
 import org.example.endoscope.api.openapi.model.DirectoryEntity;
+import org.example.endoscope.api.openapi.model.DirectoryEntityUpdate;
 import org.example.endoscope.api.openapi.model.InternalServerError;
 import java.util.List;
 import io.swagger.v3.oas.annotations.ExternalDocumentation;
@@ -33,7 +34,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-06-29T23:44:02.482532+01:00[Europe/Lisbon]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-08-02T16:56:12.632668+01:00[Europe/Lisbon]")
 @Validated
 @Controller
 @Tag(name = "directory", description = "directory API")
@@ -145,6 +146,73 @@ public interface DirectoryApi {
 
 
     /**
+     * DELETE /directories/{directoryId} : Delete directory
+     * Delete directory
+     *
+     * @param directoryId  (required)
+     * @return Successful operation (status code 200)
+     *         or Internal Server Error (status code 500)
+     */
+    @Operation(
+        operationId = "deleteDirectory",
+        summary = "Delete directory",
+        description = "Delete directory",
+        tags = { "directory" },
+        responses = {
+            @ApiResponse(responseCode = "200", description = "Successful operation"),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = InternalServerError.class))
+            })
+        }
+    )
+    @RequestMapping(
+        method = RequestMethod.DELETE,
+        value = "/directories/{directoryId}",
+        produces = { "application/json" }
+    )
+    default ResponseEntity<Void> deleteDirectory(
+        @Parameter(name = "directoryId", description = "", required = true, in = ParameterIn.PATH) @PathVariable("directoryId") Integer directoryId
+    ) {
+        return getDelegate().deleteDirectory(directoryId);
+    }
+
+
+    /**
+     * POST /directories/{directoryId} : Edit directory
+     * Edit directory
+     *
+     * @param directoryId  (required)
+     * @param directoryEntityUpdate Directory to edit (required)
+     * @return OK (status code 200)
+     *         or Internal Server Error (status code 500)
+     */
+    @Operation(
+        operationId = "editDirectory",
+        summary = "Edit directory",
+        description = "Edit directory",
+        tags = { "directory" },
+        responses = {
+            @ApiResponse(responseCode = "200", description = "OK"),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = InternalServerError.class))
+            })
+        }
+    )
+    @RequestMapping(
+        method = RequestMethod.POST,
+        value = "/directories/{directoryId}",
+        produces = { "application/json" },
+        consumes = { "application/json" }
+    )
+    default ResponseEntity<Void> editDirectory(
+        @Parameter(name = "directoryId", description = "", required = true, in = ParameterIn.PATH) @PathVariable("directoryId") Integer directoryId,
+        @Parameter(name = "DirectoryEntityUpdate", description = "Directory to edit", required = true) @Valid @RequestBody DirectoryEntityUpdate directoryEntityUpdate
+    ) {
+        return getDelegate().editDirectory(directoryId, directoryEntityUpdate);
+    }
+
+
+    /**
      * GET /directories : Get directories
      * Get directories
      *
@@ -174,6 +242,40 @@ public interface DirectoryApi {
         
     ) {
         return getDelegate().getDirectories();
+    }
+
+
+    /**
+     * GET /directories/{directoryId} : Get directory by ID
+     * Get directory by ID
+     *
+     * @param directoryId  (required)
+     * @return OK (status code 200)
+     *         or Internal Server Error (status code 500)
+     */
+    @Operation(
+        operationId = "getDirectoryById",
+        summary = "Get directory by ID",
+        description = "Get directory by ID",
+        tags = { "directory" },
+        responses = {
+            @ApiResponse(responseCode = "200", description = "OK", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = DirectoryEntity.class))
+            }),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = InternalServerError.class))
+            })
+        }
+    )
+    @RequestMapping(
+        method = RequestMethod.GET,
+        value = "/directories/{directoryId}",
+        produces = { "application/json" }
+    )
+    default ResponseEntity<DirectoryEntity> getDirectoryById(
+        @Parameter(name = "directoryId", description = "", required = true, in = ParameterIn.PATH) @PathVariable("directoryId") Integer directoryId
+    ) {
+        return getDelegate().getDirectoryById(directoryId);
     }
 
 

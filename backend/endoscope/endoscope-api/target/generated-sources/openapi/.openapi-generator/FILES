@@ -14,6 +14,7 @@ src/main/java/org/example/endoscope/api/openapi/ImageApiDelegate.java
 src/main/java/org/example/endoscope/api/openapi/model/BadRequestError.java
 src/main/java/org/example/endoscope/api/openapi/model/DirectoryDescriptionUpsert.java
 src/main/java/org/example/endoscope/api/openapi/model/DirectoryEntity.java
+src/main/java/org/example/endoscope/api/openapi/model/DirectoryEntityUpdate.java
 src/main/java/org/example/endoscope/api/openapi/model/ImageDescriptionUpsert.java
 src/main/java/org/example/endoscope/api/openapi/model/ImageEntity.java
 src/main/java/org/example/endoscope/api/openapi/model/InternalServerError.java

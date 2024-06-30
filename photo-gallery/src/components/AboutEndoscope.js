@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./AboutEndoscope.css";
 import endoscope_logo from "../assets/logo.png"; // Update with your actual logo path
+import sped_logo from "../assets/sped.png"; // Update with your sped.png logo path
 
 const AboutEndoscope = () => {
   return (
@@ -23,6 +24,7 @@ const AboutEndoscope = () => {
           Go Back to Home
         </Link>
       </div>
+      <img src={sped_logo} alt="SPED Logo" className="logo-at-bottom-right" />
     </div>
   );
 };

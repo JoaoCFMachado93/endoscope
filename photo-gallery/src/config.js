@@ -1,6 +1,6 @@
 // config.js
-//const backendBaseUrl = "http://localhost:8080"; // Update this with your backend base URL
-const backendBaseUrl = "https://endoscope-production.up.railway.app"; // Update this with your backend base URL
+// const backendBaseUrl = "http://localhost:8080"; // Update this with your backend base URL
+const backendBaseUrl = "http://ec2-13-60-13-13.eu-north-1.compute.amazonaws.com:8000"; // Update this with your backend base URL
 const SALUTATION_OPTIONS = ["Dr.", "Prof.", "Mr.", "Ms.", "Mx.", "Nurse"];
 const GENDER_OPTIONS = ["Male", "Female", "Other"];
 const AGE_INTERVAL = [

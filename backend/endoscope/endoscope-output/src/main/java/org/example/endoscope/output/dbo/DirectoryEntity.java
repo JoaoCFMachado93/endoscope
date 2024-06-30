@@ -36,4 +36,9 @@ public class DirectoryEntity {
     @JoinColumn(name = "parent_directory_id")
     private DirectoryEntity parentDirectory;
 
+    @Column(name = "image_count")
+    private Integer imageCount;
+
+    @Column(name = "directory_position")
+    private Integer directoryPosition;
 }

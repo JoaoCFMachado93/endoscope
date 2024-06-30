@@ -10,6 +10,4 @@ public interface DirectoryJpaRepository extends JpaRepository<DirectoryEntity, L
     List<DirectoryEntity> findByParentDirectory_DirectoryId(long directoryId);
 
     List<DirectoryEntity> findByParentDirectoryIsNull();
-
-
 }

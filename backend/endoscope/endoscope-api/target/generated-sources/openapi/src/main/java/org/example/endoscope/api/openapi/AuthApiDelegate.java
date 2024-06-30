@@ -21,11 +21,24 @@ import javax.annotation.Generated;
  * A delegate to be called by the {@link AuthApiController}}.
  * Implement this interface with a {@link org.springframework.stereotype.Service} annotated class.
  */
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-06-29T23:44:02.482532+01:00[Europe/Lisbon]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-08-02T16:56:12.632668+01:00[Europe/Lisbon]")
 public interface AuthApiDelegate {
 
     default Optional<NativeWebRequest> getRequest() {
         return Optional.empty();
+    }
+
+    /**
+     * POST /auth/generateBackUp : Generate backup of the database
+     * Generate backup of the database
+     *
+     * @return Backup generated successfully (status code 200)
+     *         or Internal Server Error (status code 500)
+     * @see AuthApi#generateBackUp
+     */
+    default ResponseEntity<Void> generateBackUp() {
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
     }
 
     /**
@@ -63,6 +76,19 @@ public interface AuthApiDelegate {
      * @see AuthApi#registerUser
      */
     default ResponseEntity<Void> registerUser(UserEntity userEntity) {
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+    /**
+     * POST /auth/uploadBackup : Upload backup of the database
+     * Upload backup of the database
+     *
+     * @return Backup upload successfully (status code 200)
+     *         or Internal Server Error (status code 500)
+     * @see AuthApi#uploadBackUp
+     */
+    default ResponseEntity<Void> uploadBackUp() {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }

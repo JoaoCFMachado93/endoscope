@@ -5,7 +5,9 @@ import org.example.endoscope.core.driven.UserRepositoryPort;
 import org.example.endoscope.output.dbo.UserEntity;
 import org.example.endoscope.output.repository.UserJpaRepository;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class UserRepository implements UserRepositoryPort {
 
@@ -28,23 +30,41 @@ public class UserRepository implements UserRepositoryPort {
         userJpaRepository.save(userEntity);
     }
 
-    private User dboToDomain(UserEntity userEntity) {
-        return new User(userEntity.getUserId(),
-                userEntity.getEmail(),
-                userEntity.getPassword(),
-                userEntity.getSalutation(),
-                userEntity.getGender(),
-                userEntity.getFullName(),
-                userEntity.getAge(),
-                userEntity.getDateOfBirth(),
-                userEntity.getCountryOfOrigin(),
-                userEntity.getWorkLocation(),
-                userEntity.getWorkPlaceSetting(),
-                userEntity.getMedicalId(),
-                userEntity.getMedicalSpeciality(),
-                userEntity.getEducation(),
-                userEntity.getRole());
+    @Override
+    public List<User> findAll() {
+        return userJpaRepository.findAll().stream()
+                .map(this::dboToDomain)
+                .collect(Collectors.toList());
     }
+
+    @Override
+    public void saveAll(List<User> users) {
+        List<UserEntity> userEntities = users.stream()
+                .map(this::domainToDbo)
+                .collect(Collectors.toList());
+        userJpaRepository.saveAll(userEntities);
+    }
+
+    private User dboToDomain(UserEntity userEntity) {
+        return User.builder()
+                .userId(userEntity.getUserId())
+                .email(userEntity.getEmail())
+                .password(userEntity.getPassword())
+                .salutation(userEntity.getSalutation())
+                .gender(userEntity.getGender())
+                .fullName(userEntity.getFullName())
+                .age(userEntity.getAge())
+                .dateOfBirth(userEntity.getDateOfBirth())
+                .countryOfOrigin(userEntity.getCountryOfOrigin())
+                .workLocation(userEntity.getWorkLocation())
+                .workPlaceSetting(userEntity.getWorkPlaceSetting())
+                .medicalId(userEntity.getMedicalId())
+                .medicalSpeciality(userEntity.getMedicalSpeciality())
+                .education(userEntity.getEducation())
+                .role(userEntity.getRole()) // Mapping to User.role which serves as authorities
+                .build();
+    }
+
 
     private UserEntity domainToDbo(User user) {
         return UserEntity.builder()

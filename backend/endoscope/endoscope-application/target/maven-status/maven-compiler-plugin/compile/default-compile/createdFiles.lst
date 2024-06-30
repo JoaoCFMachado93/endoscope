@@ -1,8 +1,0 @@
-org/example/endoscope/application/spring/configuration/auth/SecurityConfiguration.class
-org/example/endoscope/application/spring/configuration/core/EndoscopeCoreConfiguration.class
-org/example/endoscope/application/spring/configuration/auth/EndoscopeAuthConfiguration.class
-org/example/endoscope/application/Main.class
-org/example/endoscope/application/spring/configuration/exceptions/GlobalExceptionHandler.class
-org/example/endoscope/application/spring/configuration/output/EndoscopeOutputConfiguration.class
-org/example/endoscope/application/spring/configuration/auth/JwtAuthenticationFilter.class
-org/example/endoscope/application/spring/configuration/api/EndoscopeApiConfiguration.class

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-06-29T23:44:03+0100",
+    date = "2024-08-02T16:56:13+0100",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21 (Eclipse Adoptium)"
 )
 @Component
@@ -25,6 +25,8 @@ public class DirectoryConverterImpl implements DirectoryConverter {
         directoryEntity.setDirectoryName( directory.getDirectoryName() );
         directoryEntity.setDirectoryDescription( directory.getDirectoryDescription() );
         directoryEntity.setParentDirectory( (int) directory.getParentDirectory() );
+        directoryEntity.setImageCount( directory.getImageCount() );
+        directoryEntity.setDirectoryPosition( directory.getDirectoryPosition() );
 
         return directoryEntity;
     }
@@ -41,6 +43,12 @@ public class DirectoryConverterImpl implements DirectoryConverter {
         directory1.directoryDescription( directory.getDirectoryDescription() );
         if ( directory.getParentDirectory() != null ) {
             directory1.parentDirectory( directory.getParentDirectory() );
+        }
+        if ( directory.getImageCount() != null ) {
+            directory1.imageCount( directory.getImageCount() );
+        }
+        if ( directory.getDirectoryPosition() != null ) {
+            directory1.directoryPosition( directory.getDirectoryPosition() );
         }
 
         return directory1.build();

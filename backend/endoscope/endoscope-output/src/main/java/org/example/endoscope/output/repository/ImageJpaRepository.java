@@ -9,4 +9,5 @@ public interface ImageJpaRepository extends JpaRepository<ImageEntity, Long> {
 
     List<ImageEntity> findAllByDirectory_DirectoryId(long directoryId);
 
+    void deleteAllByDirectory_DirectoryId(long directoryId);
 }

@@ -14,5 +14,11 @@ public interface ImageRepositoryPort {
 
     void deleteImage(long imageId);
 
+    void deleteAllImagesInDirectory(long directoryId);
+
     void editImageDescription(Long imageId, String description);
+
+    List<Image> findAll();
+
+    void saveAll(List<Image> images);
 }

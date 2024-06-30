@@ -35,7 +35,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-06-29T23:44:02.482532+01:00[Europe/Lisbon]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-08-02T16:56:12.632668+01:00[Europe/Lisbon]")
 @Validated
 @Controller
 @Tag(name = "auth", description = "auth API")
@@ -44,6 +44,37 @@ public interface AuthApi {
     default AuthApiDelegate getDelegate() {
         return new AuthApiDelegate() {};
     }
+
+    /**
+     * POST /auth/generateBackUp : Generate backup of the database
+     * Generate backup of the database
+     *
+     * @return Backup generated successfully (status code 200)
+     *         or Internal Server Error (status code 500)
+     */
+    @Operation(
+        operationId = "generateBackUp",
+        summary = "Generate backup of the database",
+        description = "Generate backup of the database",
+        tags = { "auth" },
+        responses = {
+            @ApiResponse(responseCode = "200", description = "Backup generated successfully"),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = InternalServerError.class))
+            })
+        }
+    )
+    @RequestMapping(
+        method = RequestMethod.POST,
+        value = "/auth/generateBackUp",
+        produces = { "application/json" }
+    )
+    default ResponseEntity<Void> generateBackUp(
+        
+    ) {
+        return getDelegate().generateBackUp();
+    }
+
 
     /**
      * POST /auth/login : Authenticate user and generate JWT token
@@ -118,6 +149,37 @@ public interface AuthApi {
         @Parameter(name = "UserEntity", description = "User registration data", required = true) @Valid @RequestBody UserEntity userEntity
     ) {
         return getDelegate().registerUser(userEntity);
+    }
+
+
+    /**
+     * POST /auth/uploadBackup : Upload backup of the database
+     * Upload backup of the database
+     *
+     * @return Backup upload successfully (status code 200)
+     *         or Internal Server Error (status code 500)
+     */
+    @Operation(
+        operationId = "uploadBackUp",
+        summary = "Upload backup of the database",
+        description = "Upload backup of the database",
+        tags = { "auth" },
+        responses = {
+            @ApiResponse(responseCode = "200", description = "Backup upload successfully"),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = InternalServerError.class))
+            })
+        }
+    )
+    @RequestMapping(
+        method = RequestMethod.POST,
+        value = "/auth/uploadBackup",
+        produces = { "application/json" }
+    )
+    default ResponseEntity<Void> uploadBackUp(
+        
+    ) {
+        return getDelegate().uploadBackUp();
     }
 
 }

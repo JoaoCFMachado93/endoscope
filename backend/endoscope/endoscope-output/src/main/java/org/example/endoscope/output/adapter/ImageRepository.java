@@ -2,10 +2,12 @@ package org.example.endoscope.output.adapter;
 
 import org.example.endoscope.core.domain.Image;
 import org.example.endoscope.core.driven.ImageRepositoryPort;
+import org.example.endoscope.output.dbo.ImageEntity;
 import org.example.endoscope.output.mapper.directory.DbImageConverter;
 import org.example.endoscope.output.repository.ImageJpaRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ImageRepository implements ImageRepositoryPort {
 
@@ -48,11 +50,31 @@ public class ImageRepository implements ImageRepositoryPort {
     }
 
     @Override
+    public void deleteAllImagesInDirectory(long directoryId) {
+        imageJpaRepository.deleteAllByDirectory_DirectoryId(directoryId);
+    }
+
+    @Override
     public void editImageDescription(Long imageId, String description) {
         imageJpaRepository.findById(imageId)
                 .ifPresent(image -> {
                     image.setDescription(description);
                     imageJpaRepository.save(image);
                 });
+    }
+
+    @Override
+    public List<Image> findAll() {
+        return imageJpaRepository.findAll().stream()
+                .map(dbImageConverter::dboToDomain)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public void saveAll(List<Image> images) {
+        List<ImageEntity> imageEntities = images.stream()
+                .map(dbImageConverter::domainToDbo)
+                .collect(Collectors.toList());
+        imageJpaRepository.saveAll(imageEntities);
     }
 }

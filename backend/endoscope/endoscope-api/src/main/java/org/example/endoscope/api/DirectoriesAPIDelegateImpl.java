@@ -6,6 +6,7 @@ import org.example.endoscope.api.mapper.directory.DirectoryConverter;
 import org.example.endoscope.api.openapi.DirectoryApiDelegate;
 import org.example.endoscope.api.openapi.model.DirectoryDescriptionUpsert;
 import org.example.endoscope.api.openapi.model.DirectoryEntity;
+import org.example.endoscope.api.openapi.model.DirectoryEntityUpdate;
 import org.example.endoscope.core.driver.DirectoryServicePort;
 import org.springframework.http.ResponseEntity;
 
@@ -40,6 +41,28 @@ public class DirectoriesAPIDelegateImpl implements DirectoryApiDelegate {
                 .toList();
 
         directoryServicePort.createDirectory(directoryDomainList);
+        return ResponseEntity.ok().build();
+    }
+
+    @Override
+    public ResponseEntity<DirectoryEntity> getDirectoryById(Integer directoryId) {
+        log.info("Fetching directory by id: {}", directoryId);
+        var directory = directoryServicePort.getDirectoryById(directoryId);
+        return ResponseEntity.ok(directoryConverter.domainToDto(directory));
+    }
+
+    @Override
+    public ResponseEntity<Void> editDirectory(Integer directoryId, DirectoryEntityUpdate directoryEntityUpdate) {
+        log.info("Editing directory by id: {}", directoryId);
+        directoryServicePort.editDirectory(directoryId, directoryEntityUpdate.getDirectoryName(),
+                directoryEntityUpdate.getDirectoryPosition());
+        return ResponseEntity.ok().build();
+    }
+
+    @Override
+    public ResponseEntity<Void> deleteDirectory(Integer directoryId) {
+        log.info("Deleting directory by id: {}", directoryId);
+        directoryServicePort.deleteDirectory(directoryId);
         return ResponseEntity.ok().build();
     }
 

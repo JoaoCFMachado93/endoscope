@@ -18,7 +18,7 @@ import javax.annotation.Generated;
  * ImageDescriptionUpsert
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-06-29T23:44:02.482532+01:00[Europe/Lisbon]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-08-02T16:56:12.632668+01:00[Europe/Lisbon]")
 public class ImageDescriptionUpsert {
 
   private Long imageId = null;

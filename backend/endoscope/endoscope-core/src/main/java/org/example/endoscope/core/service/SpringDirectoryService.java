@@ -31,6 +31,31 @@ public class SpringDirectoryService implements DirectoryServicePort {
     }
 
     @Override
+    public Directory getDirectoryById(long directoryId) {
+        if (!directoryRepositoryPort.doesDirectoryExist(directoryId)) {
+            throw new IllegalArgumentException("Directory does not exist");
+        }
+
+        return directoryRepositoryPort.getDirectoryById(directoryId);
+    }
+
+    @Override
+    @Transactional
+    public void editDirectory(long directoryId, String directoryName, Integer directoryPosition) {
+        if (!directoryRepositoryPort.doesDirectoryExist(directoryId)) {
+            throw new IllegalArgumentException("Directory does not exist");
+        }
+
+        directoryRepositoryPort.editDirectory(directoryId, directoryName, directoryPosition);
+    }
+
+    @Override
+    @Transactional
+    public void deleteDirectory(long directoryId) {
+        directoryRepositoryPort.deleteDirectory(directoryId);
+    }
+
+    @Override
     public List<Directory> getSubDirectories(long directoryId) {
         return directoryRepositoryPort.getSubDirectories(directoryId);
     }
