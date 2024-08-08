@@ -18,7 +18,7 @@ import javax.annotation.Generated;
  * UserLoginResponse
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-08-02T16:56:12.632668+01:00[Europe/Lisbon]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-08-08T09:38:59.863660+01:00[Europe/Lisbon]")
 public class UserLoginResponse {
 
   private String token;
