@@ -1,6 +1,6 @@
 // config.js
 // const backendBaseUrl = "http://localhost:8000"; // Update this with your backend base URL
-const backendBaseUrl = "http://ec2-13-51-72-222.eu-north-1.compute.amazonaws.com:8000"; // Update this with your backend base URL
+const backendBaseUrl = "https://endoscope-be.onrender.com"; // Update this with your backend base URL
 const SALUTATION_OPTIONS = ["Dr.", "Prof.", "Mr.", "Ms.", "Mx.", "Nurse"];
 const GENDER_OPTIONS = ["Male", "Female", "Other"];
 const AGE_INTERVAL = [

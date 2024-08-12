@@ -31,7 +31,6 @@ const LoginForm = () => {
     }
     try {
       const response = await fetch(`${backendBaseUrl}/auth/login`, {
-        referrerPolicy: "unsafe-url",
         method: "POST",
         headers: {
           "Content-Type": "application/json",
