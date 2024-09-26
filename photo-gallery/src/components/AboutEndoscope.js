@@ -1,15 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./AboutEndoscope.css";
-import endoscope_logo from "../assets/logo.png"; // Update with your actual logo path
+import endoscope_logo from "../assets/logo.jpg"; // Update with your actual logo path
 import sped_logo from "../assets/sped.png"; // Update with your sped.png logo path
 
 const AboutEndoscope = () => {
   return (
     <div className="about-endoscope">
+      <h1></h1>
       <div className="logo">
         <img src={endoscope_logo} alt="EndoScope Logo" className="logo-img" />
       </div>
+      <h1></h1>
+
       <div className="about-text">
         <h1>Welcome to our Endoscopy Atlas</h1>
         <p>

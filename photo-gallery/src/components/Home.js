@@ -52,7 +52,7 @@ const Home = () => {
     <div className="app">
       <div className="header">
         <div className="logo">
-          <h1 className="logo-main">EndoScope</h1>
+          <h1 className="logo-main">ScopeView</h1>
           <p className="logo-sub">Atlas of Gastrointestinal Endoscopy</p>
         </div>
         <nav className="navbar">

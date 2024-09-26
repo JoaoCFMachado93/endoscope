@@ -227,7 +227,7 @@ const AlbumTree = ({ albums, onSelectAlbum, onImageAdded }) => {
       )}
       <div className="about-links-container">
         <Link to="/about-endoscope" className="about-link">
-          About Endoscope
+          About ScopeView
         </Link>
         <Link to="/contributors" className="about-link">
           Contributors

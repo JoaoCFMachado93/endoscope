@@ -116,7 +116,7 @@ const Contributors = () => {
             technology harmoniously collide in digestive endoscopy. It's
             definitely hard to keep up with all the information and still
             provide simple, intelligible and comprehensive information to us,
-            beginner trainees. “Endoscope” seems to be the key to help the
+            beginner trainees. “ScopeView” seems to be the key to help the
             trainees to fill the gap of an endoscopic atlas easily accessible
             and an educational and interactive resource on endoscopic imaging.
             It will hopefully be consulted and updated as a common interest for
