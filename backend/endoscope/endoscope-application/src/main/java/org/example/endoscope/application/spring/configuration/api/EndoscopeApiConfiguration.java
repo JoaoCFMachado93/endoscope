@@ -12,6 +12,7 @@ import org.example.endoscope.api.openapi.ImageApiDelegate;
 import org.example.endoscope.core.driver.AuthServicePort;
 import org.example.endoscope.core.driver.BackupServicePort;
 import org.example.endoscope.core.driver.DirectoryServicePort;
+import org.example.endoscope.core.driver.EmailServicePort;
 import org.example.endoscope.core.driver.ImageServicePort;
 import org.example.endoscope.core.service.SpringJwtService;
 import org.mapstruct.factory.Mappers;
@@ -51,8 +52,10 @@ public class EndoscopeApiConfiguration implements WebMvcConfigurer {
             AuthServicePort authServicePort,
             SpringJwtService jwtServicePort,
             BackupServicePort backupServicePort,
+            EmailServicePort emailServicePort,
             UserConverter userConverter) {
-        return new AuthAPIDelegateImpl(authServicePort, jwtServicePort, backupServicePort, userConverter);
+        return new AuthAPIDelegateImpl(
+                authServicePort, jwtServicePort, backupServicePort, emailServicePort, userConverter);
     }
 
     @Bean

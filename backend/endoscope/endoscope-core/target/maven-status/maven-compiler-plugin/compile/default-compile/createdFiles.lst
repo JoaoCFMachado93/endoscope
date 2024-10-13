@@ -11,11 +11,13 @@ org/example/endoscope/core/domain/GrantedAuthorityDeserializer.class
 org/example/endoscope/core/service/SpringJwtService.class
 org/example/endoscope/core/driver/AuthServicePort.class
 org/example/endoscope/core/domain/User.class
+org/example/endoscope/core/driver/EmailServicePort.class
 org/example/endoscope/core/service/SpringAuthService.class
 org/example/endoscope/core/domain/Country.class
 org/example/endoscope/core/domain/GrantedAuthoritySerializer.class
 org/example/endoscope/core/driven/ImageRepositoryPort.class
 org/example/endoscope/core/driver/BackupServicePort.class
 org/example/endoscope/core/domain/Directory.class
+org/example/endoscope/core/service/EmailService.class
 org/example/endoscope/core/domain/User$UserBuilder.class
 org/example/endoscope/core/domain/Image.class

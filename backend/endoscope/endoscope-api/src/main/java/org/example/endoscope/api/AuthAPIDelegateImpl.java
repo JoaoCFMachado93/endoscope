@@ -1,6 +1,5 @@
 package org.example.endoscope.api;
 
-
 import lombok.extern.slf4j.Slf4j;
 import org.example.endoscope.api.mapper.directory.UserConverter;
 import org.example.endoscope.api.openapi.AuthApiDelegate;
@@ -10,6 +9,7 @@ import org.example.endoscope.api.openapi.model.UserLoginResponse;
 import org.example.endoscope.core.domain.User;
 import org.example.endoscope.core.driver.AuthServicePort;
 import org.example.endoscope.core.driver.BackupServicePort;
+import org.example.endoscope.core.driver.EmailServicePort;
 import org.example.endoscope.core.service.SpringJwtService;
 import org.springframework.http.ResponseEntity;
 
@@ -19,24 +19,30 @@ public class AuthAPIDelegateImpl implements AuthApiDelegate {
     private final AuthServicePort authServicePort;
     private final SpringJwtService jwtServicePort;
     private final BackupServicePort backupServicePort;
+    private final EmailServicePort emailServicePort;
     private final UserConverter userConverter;
 
     public AuthAPIDelegateImpl(
             AuthServicePort authServicePort,
             SpringJwtService jwtServicePort,
             BackupServicePort backupServicePort,
+            EmailServicePort emailServicePort,
             UserConverter userConverter) {
         this.authServicePort = authServicePort;
         this.jwtServicePort = jwtServicePort;
         this.backupServicePort = backupServicePort;
+        this.emailServicePort = emailServicePort;
         this.userConverter = userConverter;
     }
 
     @Override
     public ResponseEntity<Void> registerUser(UserEntity userEntity) {
-        log.info("Register the following user: {}", userEntity.getEmail());
+        log.info("Registering user: {}", userEntity.getEmail());
         var userDomain = userConverter.dtoToDomain(userEntity);
         authServicePort.registerUser(userDomain);
+
+        emailServicePort.sendWelcomeEmail(userEntity.getEmail(), userDomain.getFullName());
+
         return ResponseEntity.ok().build();
     }
 

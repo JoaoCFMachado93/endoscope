@@ -2,6 +2,7 @@ org/example/endoscope/api/openapi/ImageApiController$1.class
 org/example/endoscope/api/openapi/model/InternalServerError.class
 org/example/endoscope/api/AuthAPIDelegateImpl.class
 org/example/endoscope/api/openapi/model/UserLoginRequest.class
+org/example/endoscope/api/openapi/model/ConfirmPasswordResetRequest.class
 org/example/endoscope/api/openapi/AuthApiController$1.class
 org/example/endoscope/api/ImagesAPIDelegateImpl.class
 org/example/endoscope/api/DirectoriesAPIDelegateImpl.class
@@ -36,5 +37,6 @@ org/example/endoscope/api/openapi/ApiUtil.class
 org/example/endoscope/api/openapi/model/DirectoryEntity.class
 org/openapitools/OpenApiGeneratorApplication.class
 org/example/endoscope/api/openapi/model/BadRequestError.class
+org/example/endoscope/api/openapi/model/ResetPasswordRequest.class
 org/example/endoscope/api/openapi/AuthApiDelegate.class
 org/example/endoscope/api/mapper/directory/UserConverterImpl.class

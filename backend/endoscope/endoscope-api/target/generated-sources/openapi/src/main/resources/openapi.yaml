@@ -626,6 +626,23 @@ components:
           format: string
           type: string
       type: object
+    ResetPasswordRequest:
+      properties:
+        email:
+          description: The user's email address to send the reset token
+          format: email
+          type: string
+      type: object
+    ConfirmPasswordResetRequest:
+      properties:
+        token:
+          description: The password reset token
+          type: string
+        newPassword:
+          description: The new password for the user
+          format: password
+          type: string
+      type: object
     UnauthorizedError:
       properties:
         message:
