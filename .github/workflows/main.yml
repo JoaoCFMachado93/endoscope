@@ -1,0 +1,31 @@
+name: PROD deployment
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Update db url
+      run: sed -i 's/<db_url>/${{ secrets.BACKEND_DB }}/' src/main/resources/application.properties
+
+    - name: Update db username
+      run: sed -i 's/<db_username>/${{ secrets.BACKEND_DB_USERNAME }}/' src/main/resources/application.properties
+
+    - name: Update db password
+      run: sed -i 's/<db_password>/${{ secrets.BACKEND_DB_PASSWORD }}/' src/main/resources/application.properties
+    
+    - name: Update JWT secret
+      run: sed -i 's/<jwt_secret>/${{ secrets.JWT_SECRET }}/' src/main/resources/application.properties
+
+    - name: Update Email username
+      run: sed -i 's/<email_username>/${{ secrets.EMAIL_USERNAME }}/' src/main/resources/application.properties
+    
+    - name: Update Email password
+      run: sed -i 's/<email_password>/${{ secrets.EMAIL_PASSWORD }}/' src/main/resources/application.properties
