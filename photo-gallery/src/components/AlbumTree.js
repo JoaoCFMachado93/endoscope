@@ -232,6 +232,9 @@ const AlbumTree = ({ albums, onSelectAlbum, onImageAdded }) => {
         <Link to="/contributors" className="about-link">
           Contributors
         </Link>
+        <Link to="/contributions" className="about-link">
+        How to Contribute
+        </Link>
       </div>
       <ul>{renderAlbums(albums)}</ul>
       {showAddImagePopup && (

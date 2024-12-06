@@ -6,6 +6,7 @@ import LoginForm from "./components/LoginForm";
 import RegisterForm from "./components/RegisterForm";
 import AboutEndoscope from "./components/AboutEndoscope";
 import Contributors from "./components/Contributors";
+import Contributions from "./components/Contributions";
 
 const AppRoutes = () => {
   const { userIsAuthenticated } = useAuth();
@@ -27,6 +28,8 @@ const AppRoutes = () => {
         <Route path="/register" element={<RegisterForm />} />
         <Route path="/about-endoscope" element={<AboutEndoscope />} />
         <Route path="/contributors" element={<Contributors />} />
+        <Route path="/contributions" element={<Contributions />} />
+
       </Routes>
     </Router>
   );

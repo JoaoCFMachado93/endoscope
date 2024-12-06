@@ -1,0 +1,106 @@
+.contributions {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.contributions-text {
+    text-align: left;
+}
+
+.contributions-text h2 {
+    font-size: 24px; /* Subheading font size */
+    margin-bottom: 10px;
+    color: #2b3d52; /* Add a custom color for headers */
+}
+
+.contributions-text p, 
+.contributions-text ul {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    text-align: justify; /* This justifies the paragraphs and list items */
+}
+
+.contributions-text ul {
+    padding-left: 20px;
+}
+
+.contributions-text ul li {
+    margin-bottom: 10px;
+}
+
+.email-link {
+    color: #007bff; /* Link color */
+    text-decoration: none;
+}
+
+.email-link:hover {
+    text-decoration: underline;
+}
+
+.back-button-container {
+    margin-top: 30px; /* Add spacing above the button */
+    text-align: center;
+}
+
+.back-button {
+    display: inline-block;
+    padding: 12px 24px; /* Button padding */
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #0056b3; /* Darker shade for hover effect */
+}
+
+.logo-at-bottom-right {
+    position: fixed;
+    bottom: 50px; /* Adjust distance from bottom */
+    right: 100px; /* Adjust distance from right */
+    width: 200px; /* Adjust size as needed */
+    height: auto;
+    z-index: 1000; /* Ensure it's above other content */
+}
+
+.get-in-touch {
+    background-color: #f9f9f9; /* Light grey background */
+    padding: 20px;
+    border-radius: 8px; /* Rounded corners */
+    margin: 20px 0; /* Spacing from other sections */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    text-align: justify; /* Justify the text */
+}
+
+.get-in-touch p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 10px; /* Space between paragraphs */
+}
+
+.email-link {
+    color: #007bff; /* Link color */
+    font-weight: bold; /* Make the email bold */
+    text-decoration: none;
+}
+
+.email-link:hover {
+    text-decoration: underline; /* Add underline on hover */
+}
+
+
+.get-in-touch ul {
+    padding-left: 20px; /* Adds spacing for list items */
+    margin-top: 10px;
+}
+
+.get-in-touch ul li {
+    margin-bottom: 10px; /* Adds spacing between bullet points */
+    line-height: 1.6; /* Improves readability */
+}
+
