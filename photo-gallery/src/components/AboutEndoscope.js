@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./AboutEndoscope.css";
-import endoscope_logo from "../assets/logo.jpg"; // Update with your actual logo path
+import endoscope_logo from "../assets/logo.png; // Update with your actual logo path
 import sped_logo from "../assets/sped.png"; // Update with your sped.png logo path
 
 const AboutEndoscope = () => {
