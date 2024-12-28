@@ -21,6 +21,7 @@ src/main/java/org/example/endoscope/api/openapi/model/ImageEntity.java
 src/main/java/org/example/endoscope/api/openapi/model/InternalServerError.java
 src/main/java/org/example/endoscope/api/openapi/model/ResetPasswordRequest.java
 src/main/java/org/example/endoscope/api/openapi/model/UnauthorizedError.java
+src/main/java/org/example/endoscope/api/openapi/model/UpdateImageStateRequest.java
 src/main/java/org/example/endoscope/api/openapi/model/UserEntity.java
 src/main/java/org/example/endoscope/api/openapi/model/UserLoginRequest.java
 src/main/java/org/example/endoscope/api/openapi/model/UserLoginResponse.java

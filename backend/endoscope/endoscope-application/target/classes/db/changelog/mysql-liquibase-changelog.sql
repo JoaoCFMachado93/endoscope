@@ -40,3 +40,8 @@ CREATE TABLE IF NOT EXISTS user (
     education VARCHAR(256) NOT NULL,
     role VARCHAR(256) NOT NULL
 );
+
+-- changeset endoscope:2
+ALTER TABLE image
+    ADD COLUMN state VARCHAR(16) NOT NULL DEFAULT 'PENDING';
+

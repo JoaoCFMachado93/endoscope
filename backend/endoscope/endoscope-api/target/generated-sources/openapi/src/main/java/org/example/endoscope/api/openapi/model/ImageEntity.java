@@ -19,12 +19,14 @@ import javax.annotation.Generated;
  * ImageEntity
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-10-13T19:02:56.871329+01:00[Europe/Lisbon]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-12-28T22:35:44.049150Z[Europe/Lisbon]")
 public class ImageEntity {
 
   private Integer imageId;
 
   private String imageName;
+
+  private String state;
 
   private Integer directory;
 
@@ -74,6 +76,26 @@ public class ImageEntity {
 
   public void setImageName(String imageName) {
     this.imageName = imageName;
+  }
+
+  public ImageEntity state(String state) {
+    this.state = state;
+    return this;
+  }
+
+  /**
+   * The state of the image
+   * @return state
+  */
+  
+  @Schema(name = "state", description = "The state of the image", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("state")
+  public String getState() {
+    return state;
+  }
+
+  public void setState(String state) {
+    this.state = state;
   }
 
   public ImageEntity directory(Integer directory) {
@@ -187,6 +209,7 @@ public class ImageEntity {
     ImageEntity imageEntity = (ImageEntity) o;
     return Objects.equals(this.imageId, imageEntity.imageId) &&
         Objects.equals(this.imageName, imageEntity.imageName) &&
+        Objects.equals(this.state, imageEntity.state) &&
         Objects.equals(this.directory, imageEntity.directory) &&
         Objects.equals(this.uploadedBy, imageEntity.uploadedBy) &&
         Objects.equals(this.uploadDate, imageEntity.uploadDate) &&
@@ -196,7 +219,7 @@ public class ImageEntity {
 
   @Override
   public int hashCode() {
-    return Objects.hash(imageId, imageName, directory, uploadedBy, uploadDate, description, Arrays.hashCode(imageData));
+    return Objects.hash(imageId, imageName, state, directory, uploadedBy, uploadDate, description, Arrays.hashCode(imageData));
   }
 
   @Override
@@ -205,6 +228,7 @@ public class ImageEntity {
     sb.append("class ImageEntity {\n");
     sb.append("    imageId: ").append(toIndentedString(imageId)).append("\n");
     sb.append("    imageName: ").append(toIndentedString(imageName)).append("\n");
+    sb.append("    state: ").append(toIndentedString(state)).append("\n");
     sb.append("    directory: ").append(toIndentedString(directory)).append("\n");
     sb.append("    uploadedBy: ").append(toIndentedString(uploadedBy)).append("\n");
     sb.append("    uploadDate: ").append(toIndentedString(uploadDate)).append("\n");

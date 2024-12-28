@@ -63,5 +63,15 @@ public class SpringImageService implements ImageServicePort {
     public void editImageDescription(Long imageId, String description) {
         imageRepositoryPort.editImageDescription(imageId, description);
     }
+
+    @Override
+    @Transactional
+    public void updateImageState(long imageId, String state) {
+        var image = imageRepositoryPort.getImageById(imageId);
+
+        image.setState(state);
+        imageRepositoryPort.save(image); // Persist the changes
+    }
+
 }
 

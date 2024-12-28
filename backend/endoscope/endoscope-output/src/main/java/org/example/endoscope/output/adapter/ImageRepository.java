@@ -34,7 +34,7 @@ public class ImageRepository implements ImageRepositoryPort {
     public Image getImageById(long imageId) {
         return imageJpaRepository.findById(imageId)
                 .map(dbImageConverter::dboToDomain)
-                .orElseThrow();
+                .orElseThrow(() -> new IllegalArgumentException("Image not found"));
     }
 
     @Override
@@ -68,6 +68,12 @@ public class ImageRepository implements ImageRepositoryPort {
         return imageJpaRepository.findAll().stream()
                 .map(dbImageConverter::dboToDomain)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public void save(Image image) {
+        ImageEntity imageEntity = dbImageConverter.domainToDbo(image);
+        imageJpaRepository.save(imageEntity);
     }
 
     @Override

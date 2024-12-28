@@ -35,6 +35,9 @@ public class ImageEntity {
     @Column(name = "image_name", nullable = false)
     private String imageName;
 
+    @Column(nullable = false)
+    private String state;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "directory_id", nullable = false)
     private DirectoryEntity directory;

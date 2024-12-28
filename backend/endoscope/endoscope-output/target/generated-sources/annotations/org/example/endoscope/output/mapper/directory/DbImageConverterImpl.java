@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-10-13T19:03:00+0100",
+    date = "2024-12-28T22:36:44+0000",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21 (Eclipse Adoptium)"
 )
 @Component
@@ -32,6 +32,7 @@ public class DbImageConverterImpl implements DbImageConverter {
             image.imageId( directory.getImageId() );
         }
         image.imageName( directory.getImageName() );
+        image.state( directory.getState() );
         image.uploadedBy( directory.getUploadedBy() );
         if ( directory.getUploadDate() != null ) {
             image.uploadDate( map( new Timestamp( directory.getUploadDate().getTime() ) ) );
@@ -56,6 +57,7 @@ public class DbImageConverterImpl implements DbImageConverter {
         imageEntity.directory( imageToDirectoryEntity( directory ) );
         imageEntity.imageId( directory.getImageId() );
         imageEntity.imageName( directory.getImageName() );
+        imageEntity.state( directory.getState() );
         imageEntity.uploadedBy( directory.getUploadedBy() );
         imageEntity.uploadDate( map( directory.getUploadDate() ) );
         imageEntity.description( directory.getDescription() );

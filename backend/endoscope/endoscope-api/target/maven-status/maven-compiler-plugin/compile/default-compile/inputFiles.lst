@@ -20,6 +20,7 @@
 /Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-api/target/generated-sources/openapi/src/main/java/org/example/endoscope/api/openapi/model/UserLoginResponse.java
 /Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-api/target/generated-sources/openapi/src/main/java/org/example/endoscope/api/openapi/model/InternalServerError.java
 /Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-api/target/generated-sources/openapi/src/main/java/org/example/endoscope/api/openapi/model/ResetPasswordRequest.java
+/Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-api/target/generated-sources/openapi/src/main/java/org/example/endoscope/api/openapi/model/UpdateImageStateRequest.java
 /Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-api/target/generated-sources/openapi/src/main/java/org/example/endoscope/api/openapi/model/UnauthorizedError.java
 /Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-api/target/generated-sources/openapi/src/main/java/org/example/endoscope/api/openapi/model/DirectoryEntityUpdate.java
 /Users/joaomachado/Documents/medicloud/backend/endoscope/endoscope-api/target/generated-sources/openapi/src/main/java/org/example/endoscope/api/openapi/model/ImageEntity.java

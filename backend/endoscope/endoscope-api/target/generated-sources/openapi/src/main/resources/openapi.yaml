@@ -516,6 +516,37 @@ paths:
       x-accepts: application/json
       x-tags:
       - tag: image
+  /images/{imageId}/state:
+    put:
+      description: Approve or deny an image by updating its state.
+      operationId: updateImageState
+      parameters:
+      - description: ID of the image to update
+        explode: false
+        in: path
+        name: imageId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/updateImageState_request'
+        required: true
+      responses:
+        "200":
+          description: Image state updated successfully
+        "404":
+          description: Image not found
+      summary: Update the state of an image
+      tags:
+      - image
+      x-content-type: application/json
+      x-accepts: application/json
+      x-tags:
+      - tag: image
 components:
   schemas:
     UserEntity:
@@ -714,6 +745,7 @@ components:
         uploadDate: ""
         imageData: imageData
         description: description
+        state: state
         directory: 6
         uploadedBy: uploadedBy
       properties:
@@ -722,6 +754,9 @@ components:
           type: integer
         imageName:
           description: The image name
+          type: string
+        state:
+          description: The state of the image
           type: string
         directory:
           description: The directory ID where the image belongs
@@ -760,4 +795,9 @@ components:
         code:
           description: The error code
           type: integer
+      type: object
+    updateImageState_request:
+      properties:
+        state:
+          type: string
       type: object

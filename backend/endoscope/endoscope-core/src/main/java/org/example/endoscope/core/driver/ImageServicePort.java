@@ -15,4 +15,6 @@ public interface ImageServicePort {
     void deleteImage(long imageId);
 
     void editImageDescription(Long imageId, String description);
+
+    void updateImageState(long imageId, String state);
 }

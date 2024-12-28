@@ -6,6 +6,7 @@ import org.example.endoscope.api.mapper.directory.ImageConverter;
 import org.example.endoscope.api.openapi.ImageApiDelegate;
 import org.example.endoscope.api.openapi.model.ImageDescriptionUpsert;
 import org.example.endoscope.api.openapi.model.ImageEntity;
+import org.example.endoscope.api.openapi.model.UpdateImageStateRequest;
 import org.example.endoscope.core.driver.ImageServicePort;
 import org.springframework.http.ResponseEntity;
 
@@ -61,6 +62,15 @@ public class ImagesAPIDelegateImpl implements ImageApiDelegate {
         Long imageId = imageDescriptionUpsert.getImageId();
         String description = imageDescriptionUpsert.getDescription();
         imageServicePort.editImageDescription(imageId, description);
+        return ResponseEntity.ok().build();
+    }
+
+    @Override
+    public ResponseEntity<Void> updateImageState(Integer imageId, UpdateImageStateRequest updateImageStateRequest) {
+        var state = updateImageStateRequest.getState();
+        log.info("Updating state of image {} to {}", imageId, state);
+
+        imageServicePort.updateImageState(imageId, state);
         return ResponseEntity.ok().build();
     }
 }

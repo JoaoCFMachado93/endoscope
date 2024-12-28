@@ -20,7 +20,7 @@ import javax.annotation.Generated;
  * UserEntity
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-10-13T19:02:56.871329+01:00[Europe/Lisbon]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-12-28T22:35:44.049150Z[Europe/Lisbon]")
 public class UserEntity {
 
   private Integer userId;

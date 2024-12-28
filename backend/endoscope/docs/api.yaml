@@ -458,6 +458,34 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalServerError'
 
+  /images/{imageId}/state:
+    put:
+      tags:
+        - image
+      summary: Update the state of an image
+      description: Approve or deny an image by updating its state.
+      operationId: updateImageState
+      parameters:
+        - name: imageId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID of the image to update
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                state:
+                  type: string
+      responses:
+        200:
+          description: Image state updated successfully
+        404:
+          description: Image not found
 
 #############################
 # Components                #
@@ -635,6 +663,9 @@ components:
         imageName:
           type: string
           description: The image name
+        state:
+          type: string
+          description: The state of the image
         directory:
           type: integer
           description: The directory ID where the image belongs

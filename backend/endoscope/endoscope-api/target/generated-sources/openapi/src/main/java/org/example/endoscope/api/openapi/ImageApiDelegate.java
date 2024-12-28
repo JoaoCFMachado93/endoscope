@@ -4,6 +4,7 @@ import org.example.endoscope.api.openapi.model.ImageDescriptionUpsert;
 import org.example.endoscope.api.openapi.model.ImageEntity;
 import org.example.endoscope.api.openapi.model.InternalServerError;
 import java.util.List;
+import org.example.endoscope.api.openapi.model.UpdateImageStateRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +20,7 @@ import javax.annotation.Generated;
  * A delegate to be called by the {@link ImageApiController}}.
  * Implement this interface with a {@link org.springframework.stereotype.Service} annotated class.
  */
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-10-13T19:02:56.871329+01:00[Europe/Lisbon]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-12-28T22:35:44.049150Z[Europe/Lisbon]")
 public interface ImageApiDelegate {
 
     default Optional<NativeWebRequest> getRequest() {
@@ -83,7 +84,7 @@ public interface ImageApiDelegate {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"imageId\" : 0, \"imageName\" : \"imageName\", \"uploadDate\" : \"\", \"imageData\" : \"imageData\", \"description\" : \"description\", \"directory\" : 6, \"uploadedBy\" : \"uploadedBy\" }";
+                    String exampleString = "{ \"imageId\" : 0, \"imageName\" : \"imageName\", \"uploadDate\" : \"\", \"imageData\" : \"imageData\", \"description\" : \"description\", \"state\" : \"state\", \"directory\" : 6, \"uploadedBy\" : \"uploadedBy\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -106,12 +107,28 @@ public interface ImageApiDelegate {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "[ { \"imageId\" : 0, \"imageName\" : \"imageName\", \"uploadDate\" : \"\", \"imageData\" : \"imageData\", \"description\" : \"description\", \"directory\" : 6, \"uploadedBy\" : \"uploadedBy\" }, { \"imageId\" : 0, \"imageName\" : \"imageName\", \"uploadDate\" : \"\", \"imageData\" : \"imageData\", \"description\" : \"description\", \"directory\" : 6, \"uploadedBy\" : \"uploadedBy\" } ]";
+                    String exampleString = "[ { \"imageId\" : 0, \"imageName\" : \"imageName\", \"uploadDate\" : \"\", \"imageData\" : \"imageData\", \"description\" : \"description\", \"state\" : \"state\", \"directory\" : 6, \"uploadedBy\" : \"uploadedBy\" }, { \"imageId\" : 0, \"imageName\" : \"imageName\", \"uploadDate\" : \"\", \"imageData\" : \"imageData\", \"description\" : \"description\", \"state\" : \"state\", \"directory\" : 6, \"uploadedBy\" : \"uploadedBy\" } ]";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
             }
         });
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+    /**
+     * PUT /images/{imageId}/state : Update the state of an image
+     * Approve or deny an image by updating its state.
+     *
+     * @param imageId ID of the image to update (required)
+     * @param updateImageStateRequest  (required)
+     * @return Image state updated successfully (status code 200)
+     *         or Image not found (status code 404)
+     * @see ImageApi#updateImageState
+     */
+    default ResponseEntity<Void> updateImageState(Integer imageId,
+        UpdateImageStateRequest updateImageStateRequest) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }

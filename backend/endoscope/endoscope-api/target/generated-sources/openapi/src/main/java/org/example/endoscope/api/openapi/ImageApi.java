@@ -9,6 +9,7 @@ import org.example.endoscope.api.openapi.model.ImageDescriptionUpsert;
 import org.example.endoscope.api.openapi.model.ImageEntity;
 import org.example.endoscope.api.openapi.model.InternalServerError;
 import java.util.List;
+import org.example.endoscope.api.openapi.model.UpdateImageStateRequest;
 import io.swagger.v3.oas.annotations.ExternalDocumentation;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -33,7 +34,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-10-13T19:02:56.871329+01:00[Europe/Lisbon]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-12-28T22:35:44.049150Z[Europe/Lisbon]")
 @Validated
 @Controller
 @Tag(name = "image", description = "image API")
@@ -208,6 +209,38 @@ public interface ImageApi {
         @Parameter(name = "directoryId", description = "", required = true, in = ParameterIn.PATH) @PathVariable("directoryId") Integer directoryId
     ) {
         return getDelegate().getImagesByDirectoryId(directoryId);
+    }
+
+
+    /**
+     * PUT /images/{imageId}/state : Update the state of an image
+     * Approve or deny an image by updating its state.
+     *
+     * @param imageId ID of the image to update (required)
+     * @param updateImageStateRequest  (required)
+     * @return Image state updated successfully (status code 200)
+     *         or Image not found (status code 404)
+     */
+    @Operation(
+        operationId = "updateImageState",
+        summary = "Update the state of an image",
+        description = "Approve or deny an image by updating its state.",
+        tags = { "image" },
+        responses = {
+            @ApiResponse(responseCode = "200", description = "Image state updated successfully"),
+            @ApiResponse(responseCode = "404", description = "Image not found")
+        }
+    )
+    @RequestMapping(
+        method = RequestMethod.PUT,
+        value = "/images/{imageId}/state",
+        consumes = { "application/json" }
+    )
+    default ResponseEntity<Void> updateImageState(
+        @Parameter(name = "imageId", description = "ID of the image to update", required = true, in = ParameterIn.PATH) @PathVariable("imageId") Integer imageId,
+        @Parameter(name = "UpdateImageStateRequest", description = "", required = true) @Valid @RequestBody UpdateImageStateRequest updateImageStateRequest
+    ) {
+        return getDelegate().updateImageState(imageId, updateImageStateRequest);
     }
 
 }

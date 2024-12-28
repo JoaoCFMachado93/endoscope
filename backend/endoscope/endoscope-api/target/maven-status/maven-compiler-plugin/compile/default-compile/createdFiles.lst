@@ -16,6 +16,7 @@ org/example/endoscope/api/mapper/directory/DirectoryConverterImpl.class
 org/example/endoscope/api/openapi/model/ImageEntity.class
 org/example/endoscope/api/openapi/ImageApiDelegate.class
 org/example/endoscope/api/openapi/DirectoryApiController$1.class
+org/example/endoscope/api/openapi/model/UpdateImageStateRequest.class
 org/example/endoscope/api/openapi/model/UnauthorizedError.class
 org/example/endoscope/api/openapi/DirectoryApiController.class
 org/example/endoscope/api/openapi/DirectoryApi.class

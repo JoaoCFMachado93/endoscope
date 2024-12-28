@@ -5,8 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
 @AllArgsConstructor
 @NoArgsConstructor(force = true) // Force creation of a no-args constructor
 @Builder(toBuilder = true)
@@ -15,6 +13,7 @@ public class Image {
 
     private final long imageId;
     private final String imageName;
+    private String state;
     private final long directory;
     private String uploadedBy;
     private long uploadDate;

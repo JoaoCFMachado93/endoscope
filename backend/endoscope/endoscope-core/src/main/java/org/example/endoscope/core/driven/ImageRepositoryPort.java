@@ -20,5 +20,7 @@ public interface ImageRepositoryPort {
 
     List<Image> findAll();
 
+    void save(Image image);
+
     void saveAll(List<Image> images);
 }
