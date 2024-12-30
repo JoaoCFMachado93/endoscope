@@ -43,10 +43,15 @@ public class ImagesAPIDelegateImpl implements ImageApiDelegate {
     @Override
     public ResponseEntity<List<ImageEntity>> getImagesByDirectoryId(Integer directoryId) {
         log.info("Fetching images by directory id: {}", directoryId);
+
         var images = imageServicePort.getImagesByDirectoryId(directoryId);
-        return ResponseEntity.ok(images.stream()
+
+        var filteredImages = images.stream()
+                .filter(image -> !image.getState().equals("DENIED"))
                 .map(imageConverter::domainToDto)
-                .toList());
+                .toList();
+
+        return ResponseEntity.ok(filteredImages);
     }
 
     @Override

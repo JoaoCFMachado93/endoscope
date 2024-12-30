@@ -33,8 +33,9 @@ public class EndoscopeCoreConfiguration {
 
     @Bean
     public ImageServicePort imageServicePort(ImageRepositoryPort imageRepositoryPort,
-                                             DirectoryRepositoryPort directoryRepositoryPort) {
-        return new SpringImageService(imageRepositoryPort, directoryRepositoryPort);
+                                             DirectoryRepositoryPort directoryRepositoryPort,
+                                             EmailServicePort emailServicePort) {
+        return new SpringImageService(imageRepositoryPort, directoryRepositoryPort, emailServicePort);
     }
 
     @Bean
