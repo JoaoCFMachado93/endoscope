@@ -13,7 +13,7 @@ const AddImagePopup = ({ directoryId, onClose }) => {
     const file = event.target.files[0];
     
     // Check if file exists and is an image
-    if (file && file.type.startsWith('image/')) {
+    if (file && file.type.startsWith("image/")) {
       const reader = new FileReader();
       reader.onloadend = () => {
         setImageData(reader.result);
@@ -23,7 +23,6 @@ const AddImagePopup = ({ directoryId, onClose }) => {
       console.error("Invalid file format or no file selected.");
     }
   };
-  
 
   const handleSubmit = async (event) => {
     event.preventDefault(); // Prevent default form submission behavior
@@ -36,13 +35,14 @@ const AddImagePopup = ({ directoryId, onClose }) => {
 
     try {
       const user = getUser();
-
       if (!user) {
         throw new Error("User not logged in");
       }
-      // Extract base64 string from data URL
+
+      const isAdmin = user && user.role.toUpperCase() === "ADMIN"; // Determine if the user is an admin
+
       const base64String = imageData.split(",")[1]; // Split at comma and get the second part
-      console.log(user)
+
       const formData = {
         imageName,
         directory: directoryId, // Include directoryId
@@ -50,6 +50,7 @@ const AddImagePopup = ({ directoryId, onClose }) => {
         uploadDate: Date.now(),
         description: imageDescription,
         imageData: base64String, // Use the extracted base64 string
+        state: isAdmin ? "APPROVED" : "PENDING", // Set state based on user role
       };
 
       const response = await fetch(
@@ -69,8 +70,8 @@ const AddImagePopup = ({ directoryId, onClose }) => {
         // Optionally, handle success
         onClose(); // Close the popup
       } else {
-        // Handle error
-        console.error("Failed to add image:", response.status);
+        const errorDetails = await response.json(); // Check for detailed error message
+        console.error("Failed to add image:", response.status, errorDetails);
       }
     } catch (error) {
       console.error("Error adding image:", error);

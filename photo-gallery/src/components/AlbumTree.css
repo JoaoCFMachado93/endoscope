@@ -17,8 +17,8 @@
 }
 
 .album {
-  display: flex; /* Use flexbox to align items */
-  justify-content: space-between; /* Space items evenly */
+  display: flex; /* Keep flexbox for alignment */
+  justify-content: space-between; /* Space between album name and dropdown/button */
   align-items: center; /* Center items vertically */
   cursor: pointer;
   padding: 10px;
@@ -27,8 +27,23 @@
   transition: background-color 0.3s ease;
 }
 
+.contribute-button {
+  background-color: #007bff; /* Blue background */
+  color: #fff; /* White text */
+  border: none; /* Remove border */
+  padding: 5px 10px; /* Small padding for compact size */
+  font-size: 12px; /* Smaller font size */
+  border-radius: 4px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor */
+  margin-left: 10px; /* Spacing between button and album name */
+}
+
+.contribute-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
 .album:hover {
-  background-color: #e0e0e0;
+  background-color: #e0e0e0; /* Keep hover effect for entire album row */
 }
 
 .album.selected {
@@ -37,10 +52,10 @@
 }
 
 .image-count-bubble {
-  border: 1px solid #0056b3; 
+  border: 1px solid #0056b3;
   color: #0056b3;
   padding: 4px 7px;
-  border-radius: 50%; /* Circle shape */
+  border-radius: 50%;
   font-size: 11px;
   margin-left: 10px;
   display: flex;

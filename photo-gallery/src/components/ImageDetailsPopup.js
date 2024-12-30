@@ -9,13 +9,16 @@ const ImageDetailsPopup = ({
   imageDescription,
   uploadedBy,
   uploadDate,
+  state,
   onClose,
-  onDescriptionUpdate,
+  onDescriptionUpdate, // Same function used to refresh images after state change
 }) => {
   const [zoomLevel, setZoomLevel] = useState(1);
   const [description, setDescription] = useState(imageDescription);
   const [isEditing, setIsEditing] = useState(false);
   const { getUser } = useAuth();
+  const user = getUser();
+  const isAdmin = user && user.role.toUpperCase() === "ADMIN";
 
   const handleZoomIn = () => setZoomLevel(zoomLevel + 0.1);
   const handleZoomOut = () => setZoomLevel(zoomLevel - 0.1);
@@ -31,7 +34,6 @@ const ImageDetailsPopup = ({
 
   const handleSaveDescription = async () => {
     try {
-      const user = getUser();
       if (!user) throw new Error("User not logged in");
 
       const response = await fetch(`${backendBaseUrl}/images`, {
@@ -44,16 +46,58 @@ const ImageDetailsPopup = ({
       });
 
       if (!response.ok) throw new Error("Failed to update image description");
-      
+
       onDescriptionUpdate(); // Notify parent to refresh images
       setIsEditing(false);
+      onClose(); // Close the popup 
     } catch (error) {
       console.error("Error updating image description:", error);
     }
   };
 
-  const user = getUser();
-  const isAdmin = user && user.role.toUpperCase() === "ADMIN";
+  const handleApprove = async () => {
+    try {
+      if (!user) throw new Error("User not logged in");
+
+      const response = await fetch(`${backendBaseUrl}/images/${imageId}/state`, {
+        method: "PUT",
+        headers: {
+          "Authorization": `Bearer ${user.token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ state: "APPROVED" }), // Set state to "APPROVED"
+      });
+
+      if (!response.ok) throw new Error("Failed to approve image");
+
+      onDescriptionUpdate(); // Notify parent to refresh images after approval
+      onClose(); // Close the popup after approval
+    } catch (error) {
+      console.error("Error approving image:", error);
+    }
+  };
+
+  const handleDeny = async () => {
+    try {
+      if (!user) throw new Error("User not logged in");
+
+      const response = await fetch(`${backendBaseUrl}/images/${imageId}/state`, {
+        method: "PUT",
+        headers: {
+          "Authorization": `Bearer ${user.token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ state: "DENIED" }), // Set state to "DENIED"
+      });
+
+      if (!response.ok) throw new Error("Failed to deny image");
+
+      onDescriptionUpdate(); // Notify parent to refresh images after denial
+      onClose(); // Close the popup after approval
+    } catch (error) {
+      console.error("Error denying image:", error);
+    }
+  };
 
   return (
     <div className="image-details-popup-overlay" onClick={onClose}>
@@ -74,6 +118,15 @@ const ImageDetailsPopup = ({
         </div>
         <div className="image-details-container">
           <p>Upload Date: {new Date(uploadDate).toLocaleDateString()}</p>
+          <p>Uploaded By: {uploadedBy}</p>
+          
+          {state === "PENDING" && isAdmin && (
+            <div className="approve-deny-buttons">
+              <button className="btn approve-btn" onClick={handleApprove}>Approve</button>
+              <button className="btn deny-btn" onClick={handleDeny}>Deny</button>
+            </div>
+          )}
+
           {isAdmin && isEditing ? (
             <div>
               <textarea
@@ -93,7 +146,7 @@ const ImageDetailsPopup = ({
                 value={description}
                 readOnly
               />
-              {isAdmin && <button className="btn edit-btn" onClick={() => setIsEditing(true)}>Edit</button>}
+              {isAdmin && <button className="btn edit-btn" onClick={() => setIsEditing(true)}>Edit description</button>}
             </div>
           )}
         </div>

@@ -12,8 +12,13 @@ const ImageGallery = ({ images, fetchImages, onDeleteImage }) => {
   const user = getUser();
   const isAdmin = user && user.role.toUpperCase() === "ADMIN";
 
-  const handleImageCardClick = (imageId, imageData, imageDescription, uploadedBy, uploadDate) => {
-    setSelectedImage({ imageId, imageData, imageDescription, uploadedBy, uploadDate });
+  // Filter images based on user role (non-admin users won't see pending images)
+  const filteredImages = isAdmin
+    ? images
+    : images.filter((image) => image.state !== "PENDING");
+
+  const handleImageCardClick = (imageId, imageData, imageDescription, uploadedBy, uploadDate, state) => {
+    setSelectedImage({ imageId, imageData, imageDescription, uploadedBy, uploadDate, state });
     setShowImageDetailsPopup(true);
   };
 
@@ -42,16 +47,17 @@ const ImageGallery = ({ images, fetchImages, onDeleteImage }) => {
 
   return (
     <div className="image-gallery">
-      {images.map((image) => (
+      {filteredImages.map((image) => (
         <div
           key={image.imageId}
-          className="image-card"
+          className={`image-card ${image.state === "PENDING" ? "pending-card" : ""}`}
           onClick={() => handleImageCardClick(
             image.imageId,
             image.imageData,
             image.description,
             image.uploadedBy,
-            image.uploadDate
+            image.uploadDate,
+            image.state // Pass the state here
           )}
         >
           <div className="image-wrapper">
@@ -80,9 +86,11 @@ const ImageGallery = ({ images, fetchImages, onDeleteImage }) => {
           </div>
         </div>
       ))}
+
       {showImageDetailsPopup && selectedImage && (
         <ImageDetailsPopup
           imageId={selectedImage.imageId}
+          state={selectedImage.state} // Pass state here
           imageData={selectedImage.imageData}
           imageDescription={selectedImage.imageDescription}
           uploadedBy={selectedImage.uploadedBy}

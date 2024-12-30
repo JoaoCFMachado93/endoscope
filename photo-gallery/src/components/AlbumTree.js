@@ -86,8 +86,6 @@ const AlbumTree = ({ albums, onSelectAlbum, onImageAdded }) => {
   };
 
   const handleCreateParentDirectory = async () => {
-    const user = getUser();
-
     const directoryName = prompt("Enter the name of the new parent directory:");
     if (!directoryName) {
       return;
@@ -102,8 +100,6 @@ const AlbumTree = ({ albums, onSelectAlbum, onImageAdded }) => {
   };
 
   const handleCreateSubDirectory = async (parentDirectoryId) => {
-    const user = getUser();
-
     const directoryName = prompt("Enter the name of the new sub-directory:");
     if (!directoryName) {
       setShowDropdownForAlbum(null);
@@ -192,7 +188,7 @@ const AlbumTree = ({ albums, onSelectAlbum, onImageAdded }) => {
   const renderAlbums = (albums) => {
     // Sort albums by directoryPosition ascending
     albums.sort((a, b) => a.directoryPosition - b.directoryPosition);
-
+  
     return albums.map((album) => (
       <li key={album.directoryId}>
         <div
@@ -203,13 +199,26 @@ const AlbumTree = ({ albums, onSelectAlbum, onImageAdded }) => {
           {album.imageCount > 0 && (
             <span className="image-count-bubble">{album.imageCount}</span>
           )}
-          {renderDropdown(album)}
+          {/* Render dropdown for admin users */}
+          {isAdmin && renderDropdown(album)}
+  
+          {/* Render "Contribute" button for non-admin users */}
+          {!isAdmin && (
+            <button
+              className="contribute-button"
+              onClick={(e) => {
+                e.stopPropagation(); // Prevent triggering album click
+                setCurrentAlbumId(album.directoryId);
+                setShowAddImagePopup(true);
+              }}
+            >
+              Contribute
+            </button>
+          )}
         </div>
         {subAlbums[album.directoryId] &&
           subAlbums[album.directoryId].length > 0 && (
-            <ul className="sub-albums">
-              {renderAlbums(subAlbums[album.directoryId])}
-            </ul>
+            <ul className="sub-albums">{renderAlbums(subAlbums[album.directoryId])}</ul>
           )}
       </li>
     ));
@@ -233,7 +242,7 @@ const AlbumTree = ({ albums, onSelectAlbum, onImageAdded }) => {
           Contributors
         </Link>
         <Link to="/contributions" className="about-link">
-        How to Contribute
+          How to Contribute
         </Link>
       </div>
       <ul>{renderAlbums(albums)}</ul>

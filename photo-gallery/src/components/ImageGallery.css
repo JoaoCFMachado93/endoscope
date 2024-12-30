@@ -23,6 +23,13 @@
   position: relative; /* Add position relative for absolute positioning of delete icon */
 }
 
+/* Special style for pending image cards */
+.pending-card {
+  border: 1px solid #f0ad4e; /* Yellow border to indicate "pending" state */
+  background-color: #fffbeb; /* Light yellowish background */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
 /* Style for the image wrapper */
 .image-wrapper {
   height: 200px; /* Set a fixed height for the image wrapper */
