@@ -4,7 +4,7 @@ public interface EmailServicePort {
 
     void sendWelcomeEmail(String to, String name);
 
-    void notifyPendingImage();
+    void notifyPendingImage(String directoryName);
 
     void sendAddedPendingImage(String to);
 

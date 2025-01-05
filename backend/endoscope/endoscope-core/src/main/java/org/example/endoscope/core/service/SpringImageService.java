@@ -1,6 +1,7 @@
 package org.example.endoscope.core.service;
 
 import jakarta.transaction.Transactional;
+import org.example.endoscope.core.domain.Directory;
 import org.example.endoscope.core.domain.Image;
 import org.example.endoscope.core.driven.DirectoryRepositoryPort;
 import org.example.endoscope.core.driven.ImageRepositoryPort;
@@ -38,6 +39,7 @@ public class SpringImageService implements ImageServicePort {
             throw new IllegalArgumentException("Directory does not exist");
         }
 
+        Directory directory = directoryRepositoryPort.getDirectoryById(directoryId);
         imageRepositoryPort.createImageInDirectory(directoryId, images);
 
         for (Image image : images) {
@@ -46,7 +48,7 @@ public class SpringImageService implements ImageServicePort {
             } else if ("PENDING".equals(image.getState())) {
                 // Async email notifications
                 executorService.submit(() -> {
-                    emailServicePort.notifyPendingImage();
+                    emailServicePort.notifyPendingImage(directory.getDirectoryName());
                     emailServicePort.sendAddedPendingImage(image.getUploadedBy());
                 });
             }

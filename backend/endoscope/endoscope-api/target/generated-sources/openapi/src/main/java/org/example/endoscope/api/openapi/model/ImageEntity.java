@@ -19,7 +19,7 @@ import javax.annotation.Generated;
  * ImageEntity
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-12-28T22:35:44.049150Z[Europe/Lisbon]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-01-05T23:11:49.347302Z[Europe/Lisbon]")
 public class ImageEntity {
 
   private Integer imageId;

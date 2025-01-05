@@ -25,11 +25,12 @@ public class EmailService implements EmailServicePort {
     }
 
     @Override
-    public void notifyPendingImage() {
+    public void notifyPendingImage(String directoryName) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(ADMIN_EMAIL);
         message.setSubject("Nova Contribuição de image no ScopeView!");
-        message.setText("Olá Luis,\n\nExiste uma nova Image que precisa da tua aprovação! \n\nMelhores cumprimentos,\nScopeView");
+        message.setText("Olá Luis,\n\nExiste uma nova Image no diretório '" + directoryName + "' " +
+                "que necessita de aprovação.\n\nCumprimentos,\nA Equipa");
         mailSender.send(message);
     }
 
